@@ -1,0 +1,12 @@
+IF (NOT SOURCES)
+    FILE(GLOB_RECURSE SOURCES "*.cpp")
+ENDIF (NOT SOURCES)
+
+SET(EXTRA_LIBS
+     ##ADD LIB FILE HERE
+     LibDLHangRailConfigData
+     LibSocket
+)
+
+ADD_LIBRARY(LibDLHangRailSocket ${SOURCES})
+TARGET_LINK_LIBRARIES(LibDLHangRailSocket ${EXTRA_LIBS})

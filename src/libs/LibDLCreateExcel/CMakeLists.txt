@@ -1,0 +1,22 @@
+IF (NOT SOURCES)
+    FILE(GLOB_RECURSE SOURCES "*.cpp")
+ENDIF (NOT SOURCES)
+
+
+IF(CMAKE_BUILD_TYPE MATCHES "Debug")
+	SET(EXTRA_EXCEL_LIBS
+	Qt5Xlsxd.lib
+)
+ELSEIF(CMAKE_BUILD_TYPE MATCHES "Release")
+   SET(EXTRA_EXCEL_LIBS
+   	Qt5Xlsx.lib
+)
+ELSE()
+  message("Some other build type.")
+ENDIF()
+
+SET(EXTRA_LIBS
+	LibDLWheelRobotDBOperation
+)
+ADD_LIBRARY(LibDLCreateExcel ${SOURCES}) 
+TARGET_LINK_LIBRARIES(LibDLCreateExcel libxl ${EXTRA_LIBS} ${EXTRA_EXCEL_LIBS})

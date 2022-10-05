@@ -1,0 +1,69 @@
+#ifndef __DL_WHEEL_ROBOT_CTRL_MSG_H__
+#define __DL_WHEEL_ROBOT_CTRL_MSG_H__
+
+#include "LibSocket/baseMsgOperation.h"
+#include <boost/thread/thread.hpp>
+#include "common/DLWheelRobotGlobalDef.hpp"
+
+class LibDLWheelRobotMsg :
+    public baseMsgOperation
+{
+public:
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Fn: LibDLWheelRobotCtrlMsg::LibDLWheelRobotCtrlMsg();
+    ///
+    /// Summary:    Default constructor.
+    ///
+    /// Author: Berry
+    ///
+    /// Date:   2018/5/3
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    LibDLWheelRobotMsg();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Fn: LibDLWheelRobotCtrlMsg::~LibDLWheelRobotCtrlMsg();
+    ///
+    /// Summary:    Destructor.
+    ///
+    /// Author: Berry
+    ///
+    /// Date:   2018/5/3
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ~LibDLWheelRobotMsg();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Fn: void LibDLWheelRobotCtrlMsg::registerHandles();
+    ///
+    /// Summary:    Registers the handles.
+    ///
+    /// Author: Berry
+    ///
+    /// Date:   2018/5/3
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void registerHandles();
+
+    void registerMsgHandle(int messageID, JsonMsgCallBack callback);
+
+private:
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// Fn: uint16_t LibDLWheelRobotCtrlMsg::getMsgId();
+    ///
+    /// Summary:    Gets message identifier.
+    ///
+    /// Author: Berry
+    ///
+    /// Date:   2018/5/3
+    ///
+    /// Returns:    The message identifier.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    uint16_t getMsgId();
+    boost::mutex getMsgIdMutex;
+};
+
+#endif

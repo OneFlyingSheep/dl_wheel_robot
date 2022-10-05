@@ -1,0 +1,57 @@
+*{font-family:SimSun;font-size:12px;}
+
+QToolButton#TitleToolButton
+{
+	border:none;
+}
+
+QWidget#TitleWidget
+{
+	background:rgb(250, 250, 250);
+}
+
+QWidget#GuideBackWidget
+{
+	border-radius:5px;
+	background:rgb(145, 167, 255);
+}
+
+QWidget#BottomWidget
+{
+	background:rgb(145, 167, 255);
+}
+
+QLabel#GuideTextLabel
+{
+	padding-left:40px;
+	font-size:16px;
+	color:white;
+	background:transparent;
+	border-right:none;
+	border-left:1px solid white;
+	border-top:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 255, 255), stop:0.8 rgba(255, 255, 255, 150), stop:1 rgba(255, 255, 255, 0));
+	border-bottom:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 255, 255, 255), stop:0.8 rgba(255, 255, 255, 100), stop:1 rgba(255, 255, 255, 0));
+}
+
+QLabel#SpliteLabel
+{
+	border:1px solid rgb(166, 186, 255);
+}
+
+QLabel#TitleTextLabel
+{
+	color:rgb(166, 186, 255);
+	font-size:18px;
+	font-weight:bold;
+}
+
+QLabel#ProvinceTextLabel
+{
+	font-size:14px;
+	margin-left:25px;
+	margin-right:25px;
+	color:white;
+	border-radius:3px;
+	border:2px solid rgb(69, 94, 222);
+	background:rgb(69, 94, 222);
+}

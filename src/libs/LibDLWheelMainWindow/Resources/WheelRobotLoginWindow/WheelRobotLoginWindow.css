@@ -1,0 +1,55 @@
+*{font-family:Microsoft YaHei; color:white;}
+
+QWidget#LoginBackWidget
+{
+	border:none;
+	border-top:4px solid rgb(68,202,177);
+	background:rgba(0, 0, 0, 80);
+}
+
+QLineEdit
+{
+	padding-left:27px;
+	border:none;
+	background:rgb(68,202,177);
+}
+
+QLabel#LoginLabel
+{
+	font-size:18px;
+}
+
+QLabel#LineEditLabel
+{
+	font-size:14px;
+	color:rgb(68,202,177);
+}
+
+QLabel#TopTitleSplit
+{
+	margin-left:60px;
+	border:1px solid rgba(255, 255, 255, 200);
+}
+
+QLabel#LabelTopTitle
+{
+	font-size:14px;
+	padding-left:55px;
+}
+
+QLabel#TitleLabelChinese
+{
+	font-size:35px;
+	font-weight:bold;
+}
+
+QLabel#TitleLabelEnglish
+{
+	font-size:15px;
+	font-weight:bold;
+}
+
+QLabel#LabelCopyRight
+{
+	font-size:14px;
+}

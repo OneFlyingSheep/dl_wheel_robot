@@ -1,0 +1,7 @@
+find_package( Qt5Widgets REQUIRED )
+IF (NOT SOURCES)
+    FILE(GLOB_RECURSE SOURCES "*.cpp")
+ENDIF (NOT SOURCES)
+
+ADD_LIBRARY(LibCommonFileOperation ${SOURCES}) 
+TARGET_LINK_LIBRARIES(LibCommonFileOperation ${Qt5Widgets_LIBRARIES})

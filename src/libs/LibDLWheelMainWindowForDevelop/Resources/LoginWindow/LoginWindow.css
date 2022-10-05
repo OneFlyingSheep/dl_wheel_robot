@@ -1,0 +1,64 @@
+*{font-family:Microsoft YaHei;}
+
+QLabel#TitleText
+{
+	font-size:20px;
+	color:gray;
+}
+
+QLabel#InputLabel
+{
+	font-size:12px;
+	color:#0f96ff;
+}
+
+QLineEdit
+{
+	color:gray;
+	border:none;
+	border-bottom:1px solid #0f96ff;
+	padding-left:3px;
+	padding-right:3px;
+}
+
+QWidget#LeftWidget
+{
+	background:white;
+}
+
+QPushButton#TitleIcon
+{
+	border:none;
+}
+
+/*µ«¬Ω∞¥≈•*/
+QPushButton#LoginButton
+{
+    color:white;
+    background-color:rgb(14 , 150 , 254);
+    border-radius:15px;
+}
+
+QPushButton#LoginButton:hover
+{
+    background-color:rgb(44 , 137 , 255);
+}
+
+QPushButton#LoginButton:pressed
+{
+    background-color:rgb(14 , 135 , 228);
+    padding-left:3px;
+    padding-top:3px;
+}
+
+/*Õ¯¬Á…Ë÷√∞¥≈•*/
+QPushButton#NetWorkSetButton
+{
+	border:none;
+}
+
+QPushButton#NetWorkSetButton:pressed
+{
+	padding-left:1px;
+	padding-top:1px;
+}

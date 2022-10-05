@@ -1,0 +1,35 @@
+QToolButton
+{
+	border:none;	
+}
+
+QPushButton
+{
+	color:#59908B;
+	background:lightgray;
+	border:1px solid gray;
+}
+
+QPushButton:pressed
+{
+	padding-left:2px;
+	padding-top:2px;
+}
+
+QToolButton#SearchButton
+{
+	color:white;
+	font-size:14px;
+	background:rgb(0, 110, 110);
+}
+
+QWidget#CenterBackWidget
+{
+	background:white;
+	border:1px solid gray;
+}
+
+QWidget#TopBackWidget
+{
+	background:white;
+}

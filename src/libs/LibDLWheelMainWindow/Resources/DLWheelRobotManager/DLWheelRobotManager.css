@@ -1,0 +1,78 @@
+*{font-family:SimSun;}
+
+QWidget#PatrolStateWidget
+{
+	background:rgb(212, 236, 234);
+}
+
+QWidget#DataShowWidget
+{
+	background-color:rgb(212, 236, 234);
+}
+
+QWidget#ButtonBackWidget
+{
+	background:rgb(212, 236, 234);
+}
+
+QTabWidget::pane
+{
+	border:2px solid rgb(145, 200, 180);
+}
+
+QTabWidget::tab-bar
+{
+	alignment:left; 
+	left:3px; 
+	right:3px; 
+}
+QTabBar::tab
+{
+	min-height:20px;
+	min-width:85px;
+	background-color:rgb(212, 236, 234);
+	border:1px solid rgb(145, 200, 180);
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+}
+/*
+QTabBar::tab:hover
+{
+	background:rgb(255, 255, 255, 100);
+}
+*/
+QTabBar::tab:selected
+{
+	font-weight:bold;
+}
+
+QPushButton#ControlButton
+{
+	background:rgb(60, 60, 60);
+	border-radius:3px;
+}
+
+QPushButton#ControlButton:pressed
+{
+	padding-left:2px;
+	padding-top:2px;
+}
+
+QPushButton#ModeButton
+{
+	background:rgb(30, 185, 200);
+	border-radius:3px;
+	border:1px solid gray;
+}
+
+QPushButton#ModeButton:pressed
+{
+	padding-left:2px;
+	padding-top:2px;
+}
+
+QPushButton#ModeButton:checked
+{
+	background:rgb(250, 150, 70);
+}
+

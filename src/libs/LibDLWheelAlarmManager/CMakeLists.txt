@@ -1,0 +1,12 @@
+find_package( Qt5Widgets REQUIRED )
+IF (NOT SOURCES)
+    FILE(GLOB_RECURSE SOURCES "*.*")
+ENDIF (NOT SOURCES)
+
+SET(EXTRA_LIBS
+     ##ADD LIB FILE HERE
+	# LibDLWheelRobotCoreSocket
+)
+
+ADD_LIBRARY(LibDLWheelAlarmManager ${SOURCES}) 
+TARGET_LINK_LIBRARIES(LibDLWheelAlarmManager ${Qt5Widgets_LIBRARIES} ${EXTRA_LIBS} )

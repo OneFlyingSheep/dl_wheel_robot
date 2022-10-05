@@ -1,0 +1,15 @@
+find_package( Qt5Widgets REQUIRED )
+
+IF (NOT SOURCES)
+    FILE(GLOB_RECURSE SOURCES "*.cpp" "*.h")
+ENDIF (NOT SOURCES)
+
+SET(EXTRA_LIBS
+      
+)
+
+
+ADD_LIBRARY(LibDLNewInfraredSDK ${SOURCES}) 
+
+TARGET_LINK_LIBRARIES(LibDLNewInfraredSDK GuideSDK ThermoGroupSDKLib_Vis_x64 ThermoGroupSDKLib_x64 ${Qt5Widgets_LIBRARIES} ${EXTRA_LIBS})
+
