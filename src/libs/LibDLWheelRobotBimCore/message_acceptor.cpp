@@ -512,8 +512,8 @@ bool MessageAcceptor::handleRobotStatusInfoQuery(std::string query_string, std::
 	}
 
 	QList<WheelPatrolResultStruct> patrol_result;
-
 	WHEEL_ROBOT_DB.getWheelPatrolResultDB(patrol_result, QString::fromStdString(timestart), QString::fromStdString(timeend));
+
 	//获取数据
 	JsonContent json_data;
 	std::vector<JsonContent> result_list;
@@ -522,7 +522,14 @@ bool MessageAcceptor::handleRobotStatusInfoQuery(std::string query_string, std::
 	for (auto itor = patrol_result.begin(); itor != patrol_result.end(); ++itor)
 	{
 		JsonContent patrol_info;
-		patrol_info.jsonAppendElement("status", "GoalReached");
+		if (patrol_result.begin() == itor)
+		{
+			patrol_info.jsonAppendElement("status", "Started");
+		}
+		else if (patrol_result.end() == itor)
+		{
+			patrol_info.jsonAppendElement("status", "Finished");
+		}
 		
 		WHEEL_ROBOT_DB.getDeviceSnForDeviceUUidDB(itor->device_uuid, device_deal_id, device_deal_name);
 

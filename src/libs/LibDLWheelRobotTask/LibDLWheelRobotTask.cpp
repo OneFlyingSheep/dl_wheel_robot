@@ -539,10 +539,47 @@ void LibDLWheelRobotTask::doVisionCheck(WheelRobotDeviceCollectData data)
 		inspectRes.alarm_level_id = Alarm_NoIdentifyAbnormal;
 	}
     WHEEL_ROBOT_DB.updateDeviceAlarmLevel(inspectRes.alarm_level_id, inspectRes.device_uuid);
+
     WHEEL_ROBOT_DB.insertInspectResultDB(inspectRes);
     WHEEL_CORE_SERVER.Remote_robot_inspect_result(inspectRes);
 
 	WHEEL_ROBOT_DB.getDeviceSnForDeviceUUidDB(inspectRes.device_uuid, inspectRes.deal_info_uuid, inspectRes.virtual_name);
+
+	WheelRobotCurrentTaskInfoShow showTask;
+	do
+	{
+		boost::mutex::scoped_lock lock(m_currentTaskInfoLock);
+		if (bNewTask && data.task_uuid == m_currentTaskInfo.task_uuid && inspectRes.alarm_level_id != Alarm_Normal)
+		{
+			m_currentTaskInfo.alarmDeviceCount++;
+			showTask.task_uuid = m_currentTaskInfo.task_uuid;
+			showTask.task_name = m_currentTaskInfo.task_name;
+			showTask.predict_duration = m_currentTaskInfo.predict_duration;
+			showTask.current_device_uuid = m_currentTaskInfo.current_device_uuid;
+			showTask.current_device_name = m_currentTaskInfo.current_device_name;
+			showTask.total_devices = m_currentTaskInfo.devices.size();
+			showTask.checked_devices = m_currentTaskInfo.device_count;
+
+			showTask.percent = (showTask.total_devices != 0) ? (showTask.checked_devices * 1.0f / showTask.total_devices * 1.0f) : 0;
+			ROS_INFO("task currentTaskFunc: showTask.total_devices:%d   showTask.checked_devicesP:%d", showTask.total_devices, showTask.checked_devices);
+
+			if (showTask.total_devices != 0)
+			{
+				if (showTask.checked_devices == 0)
+				{
+					inspectRes.deal_info_uuid = "Started";
+				}
+				else if (showTask.checked_devices != showTask.checked_devices + 1) {
+					inspectRes.deal_info_uuid = "GoalReached";
+				}
+				else if (showTask.checked_devices == showTask.checked_devices + 1) {
+					inspectRes.deal_info_uuid = "Finished";
+				}
+			}
+
+			showTask.alarmDeviceCount = m_currentTaskInfo.alarmDeviceCount;
+		}
+	} while (0);
 	signal_inspect_notify(inspectRes);
 
 	QImage img;
@@ -550,28 +587,8 @@ void LibDLWheelRobotTask::doVisionCheck(WheelRobotDeviceCollectData data)
 	QImage result = img.scaled(960, 540, Qt::KeepAspectRatio, Qt::FastTransformation).scaled(91, 54, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	bool isSuccess = result.save(imgCompressPath + QString("_scaled.jpg"), "JPEG", 20);
 
-    do 
-    {
-        boost::mutex::scoped_lock lock(m_currentTaskInfoLock);
-        if (bNewTask && data.task_uuid == m_currentTaskInfo.task_uuid && inspectRes.alarm_level_id != Alarm_Normal)
-        {
-            m_currentTaskInfo.alarmDeviceCount++;
-            WheelRobotCurrentTaskInfoShow showTask;
-            showTask.task_uuid = m_currentTaskInfo.task_uuid;
-            showTask.task_name = m_currentTaskInfo.task_name;
-            showTask.predict_duration = m_currentTaskInfo.predict_duration;
-            showTask.current_device_uuid = m_currentTaskInfo.current_device_uuid;
-            showTask.current_device_name = m_currentTaskInfo.current_device_name;
-            showTask.total_devices = m_currentTaskInfo.devices.size();
-            showTask.checked_devices = m_currentTaskInfo.device_count;
-            showTask.percent = (showTask.total_devices != 0) ? (showTask.checked_devices * 1.0f / showTask.total_devices * 1.0f) : 0;
-            ROS_INFO("task currentTaskFunc: showTask.total_devices:%d   showTask.checked_devicesP:%d", showTask.total_devices, showTask.checked_devices);
-            showTask.alarmDeviceCount = m_currentTaskInfo.alarmDeviceCount;
-            WHEEL_ROBOT_DB.getTaskPropertyByTaskUuid(showTask.task_uuid, showTask.task_property);
-            WHEEL_CORE_SERVER.Remote_robot_current_task_status(showTask);
-        }
-    } while (0);
-
+	WHEEL_ROBOT_DB.getTaskPropertyByTaskUuid(showTask.task_uuid, showTask.task_property);
+	WHEEL_CORE_SERVER.Remote_robot_current_task_status(showTask);
 }
 
 void LibDLWheelRobotTask::visionFunc()

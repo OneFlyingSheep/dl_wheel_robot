@@ -1635,7 +1635,7 @@ void LibDLWheelRobotCoreServer::Remote_robot_current_task_status(WheelRobotCurre
 	}
 	ROS_ERROR("showTask.total_devices:%d   showTask.checked_devices:%d", task.total_devices, task.checked_devices);
 
-	pos_content.jsonAppendElement("id", std::to_string((int)m_current_robotID));
+	pos_content.jsonAppendElement("robotid", std::to_string((int)m_current_robotID));
 	pos_content.jsonAppendElement("status", status);
 	pos_content.jsonAppendElement("dev_id", std::string(task.current_device_uuid.toLocal8Bit()));
 	pos_content.jsonAppendElement("dev_name", std::string(task.current_device_name.toLocal8Bit()));
